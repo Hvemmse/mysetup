@@ -1,0 +1,44 @@
+#!/bin/bash
+# Coded 20/02/2022 Contact frank@simens.dk
+
+#!/bin/bash
+
+if [[ -f "/usr/bin/mpv" ]]
+then
+clear
+PS3='Vælg den station du vil høre: '
+options=("NDR 2" "P4 Øst" "Radio Soft" "GoFM" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "NDR 2")
+            echo "NDR2"
+	    mpv https://www.ndr.de/resources/metadaten/audio/m3u/ndr2_sh.m3u
+
+            ;;
+        "P4 Øst")
+            echo "P4 Østjylland"
+            mpv http://live-icy.gss.dr.dk:8000/A/A14L.mp3
+	    ;;
+        "Radio Soft")
+            echo "Radio Soft"
+	    mpv http://onair.100fmlive.dk/soft_live.mp3
+            ;;
+	"GoFM")
+	    echo "GoFM"
+	    mpv http://stream1.webfm.dk/Webfm
+	    ;;
+        "Exit")
+            break
+            ;;
+        *) echo "Forkert Valg $REPLY";;
+    esac
+done
+else
+echo
+echo "Mpv ikke fundet , installerer. Run ./radio again"
+
+sudo pacman -S mpv
+./radiodk
+
+fi
