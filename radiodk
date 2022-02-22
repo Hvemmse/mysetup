@@ -3,8 +3,16 @@
 
 #!/bin/bash
 
-if [[ -f "/usr/bin/mpv" ]]
+if [[ ! -f "/usr/bin/mpv" ]]
 then
+
+echo
+echo "Mpv ikke fundet , installerer. Run ./radio again"
+
+sudo pacman -S mpv
+./radiodk
+
+else
 clear
 PS3='Vælg den station du vil høre: '
 options=("NDR 2" "P4 Øst" "Radio Soft" "GoFM" "Exit")
@@ -34,11 +42,5 @@ do
         *) echo "Forkert Valg $REPLY";;
     esac
 done
-else
-echo
-echo "Mpv ikke fundet , installerer. Run ./radio again"
-
-sudo pacman -S mpv
-./radiodk
 
 fi
