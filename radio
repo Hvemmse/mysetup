@@ -1,5 +1,5 @@
 #!/bin/bash
-# 
+# Coded 20/02/2022 Contact frank@simens.dk
 
 #!/bin/bash
 
@@ -36,7 +36,7 @@ do
 done
 else
 echo
-echo "mpv skal installeres, tast din adgangskode."
+echo "mpv not found, installing. Run ./radio again"
 
 sudo pacman -S mpv
 
