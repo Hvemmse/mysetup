@@ -36,9 +36,9 @@ do
 done
 else
 echo
-echo "mpv not found, installing. Run ./radio again"
+echo "mpv not found, installing.... "
 
 sudo pacman -S mpv
+./radio
 
 fi
-
