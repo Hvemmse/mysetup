@@ -1,0 +1,44 @@
+#!/bin/bash
+# 
+
+#!/bin/bash
+
+if [[ -f "/usr/bin/mpv" ]]
+then
+clear
+PS3='Please enter your choice: '
+options=("NDR 2" "P4 Øst" "Radio Soft" "GoFM" "Exit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "NDR 2")
+            echo "NDR2"
+	    mpv https://www.ndr.de/resources/metadaten/audio/m3u/ndr2_sh.m3u
+
+            ;;
+        "P4 Øst")
+            echo "P4 Østjylland"
+            mpv http://live-icy.gss.dr.dk:8000/A/A14L.mp3
+	    ;;
+        "Radio Soft")
+            echo "Radio Soft"
+	    mpv http://onair.100fmlive.dk/soft_live.mp3
+            ;;
+	"GoFM")
+	    echo "GoFM"
+	    mpv http://stream1.webfm.dk/Webfm
+	    ;;
+        "Exit")
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+else
+echo
+echo "mpv skal installeres, tast din adgangskode."
+
+sudo pacman -S mpv
+
+fi
+
