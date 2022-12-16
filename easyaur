@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # coded by Frank Simens at 2022 contact frank@simens.dk
+# easyaur.sh is a script to use bash to get git clone from the aur from archlinux. e easy way to use. 
+
+# The skript does clone the git repository, cd into the downloaded folder and run makepkg -si
 
 # set url as arg 1 after the commands
 # syntax is ./easyaur.sh arg1 eks. https://aur.archlinux.org/free42.git
