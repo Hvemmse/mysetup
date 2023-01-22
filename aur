@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# coded by Frank Simens at 2022 contact frank@simens.dk
+# coded by Frank Simens at 2023 contact frank@simens.dk
 # easyaur is a script to use bash to get git clone from the aur from archlinux. easy way to use. copy the file to you /bin folder and you can used it one the hole system.
 # Works on Arch BTW
 
