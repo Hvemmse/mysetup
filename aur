@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# coded by Frank Simens at 2022 contact frank@simens.dk
+# easyaur is a script to use bash to get git clone from the aur from archlinux. easy way to use. copy the file to you /bin folder and you can used it one the hole system.
+# Works on Arch BTW
+
+pkgname=$1
+url="https://aur.archlinux.org/${pkgname}.git"
+
+# Get the filename for the path after download
+radir=$pkgname
+
+# Clone the link with git klone
+git clone --quiet $url
+
+# Change directory to the package name as directory
+cd $radir 
+
+# install the package. you need need the base-devel and linux-headers installed 
+# example sudo pacman -Sy base-devel Linux-headers 
+makepkg -si --noconfirm
