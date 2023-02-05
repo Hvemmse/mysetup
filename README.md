@@ -26,4 +26,3 @@ This code generates 4 random passwords by concatenating 4 random words from a fi
 
 Functions and variables are well documented, making the code easier to understand and maintain. The code uses the SHA-256 hash function to hash the passwords.
 
-Closes #XXX
