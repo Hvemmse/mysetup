@@ -26,3 +26,6 @@ This code generates 4 random passwords by concatenating 4 random words from a fi
 
 Functions and variables are well documented, making the code easier to understand and maintain. The code uses the SHA-256 hash function to hash the passwords.
 
+# password_generator.py
+
+This script generates a random password and displays the password and its hash in a GUI created with tkinter. The user can copy the password or its hash to the clipboard by clicking the "Copy" buttons. you need a wordile as passwords.txt
