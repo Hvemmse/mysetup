@@ -2,41 +2,58 @@
 
 ### Coded in 2023 by Frank Fimens Contact frank@simens.dk
 
+# Clear the screen
 clear
+
+# Set the prompt for the select loop
 PS3='Enter LANscope: '
+
+# Display a menu and wait for user input
 select opt in "192.168.1." "127.0.0." "10.0.2." "Costum" "Scan all ip in lan" "Use NSLookup" "Exit"
 do
-
+   # Check the user's choice and take the corresponding action
    case $opt in
         "192.168.1.")
+            # Prompt user with their selection and ping the specified IP
             echo "you chose choice $opt$1"
             ping -c4 $opt$1 ;;
         "127.0.0.")
+            # Prompt user with their selection and ping the specified IP
             echo "you chose choice $opt$1"
             ping -c4 $opt$1 ;;
         "10.0.2.")
+            # Prompt user with their selection and ping the specified IP
             echo "you chose choice $opt$1"
             ping -c4 $opt$1 ;;
         "Costum")
+            # Prompt user to enter a custom IP or domain name, then ping it
             echo -n "Enter the Ip or domainname: " 
             read ipa
             ping -c4 $ipa ;;
         "Scan all ip in lan")
+            # Scan all IPs in a subnet and show any that respond to pings
             for i in $(seq 254); do ping 192.168.1.$i -c1 -W1 & done | grep from
             ;;
  
-	    "Use NSLookup")
-    	    echo -n "Enter the ip or DomainName: "
-    	    read ipa
-                nslookup $ipa ;;
-
+        "Use NSLookup")
+            # Prompt user to enter an IP or domain name, then perform an NS lookup
+            echo -n "Enter the ip or DomainName: "
+            read ipa
+            nslookup $ipa ;;
         "Exit")
+            # Exit the loop and the script
             break ;;
-        *) echo invalid option ;;
+        *) 
+            # Show an error message for an invalid choice
+            echo invalid option ;;
     esac
 done
 
+# Check if any command line arguments were given
 if [ ! -n "$1" ]
 then
-echo "Usage: `basename $0` argument1 etc."
-exit $E_BADARGS
+    # Print a usage message and exit with an error code
+    echo "Usage: `basename $0` argument1 etc."
+    exit $E_BADARGS
+fi
+
