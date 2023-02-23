@@ -1,4 +1,5 @@
 #!/bin/bash
+# inspirated from this guide! https://computingforgeeks.com/how-to-configure-samba-share-on-debian/
 
 # Update and upgrade the system
 apt update
