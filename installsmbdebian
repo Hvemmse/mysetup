@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# Update and upgrade the system
+apt update
+apt upgrade -y
+
+# Install required packages
+apt install samba smbclient cifs-utils nano sudo -y
+
+# Configure Samba
+sed -i 's/workgroup =.*/workgroup = WORKGROUP/' /etc/samba/smb.conf
+mkdir /public
+mkdir /private
+
+cat << EOF >> /etc/samba/smb.conf
+[public]
+   comment = Public Folder
+   path = /public
+   writable = yes
+   guest ok = yes
+   guest only = yes
+   force create mode = 775
+   force directory mode = 775
+[private]
+   comment = Private Folder
+   path = /private
+   writable = yes
+   guest ok = no
+   valid users = @smbshare
+   force create mode = 770
+   force directory mode = 770
+   inherit permissions = yes
+EOF
+
+groupadd smbshare
+chgrp -R smbshare /private/
+chgrp -R smbshare /public
+chmod 2770 /private/
+chmod 2775 /public
+
+useradd -M -s /sbin/nologin sambauser
+usermod -aG smbshare sambauser
+smbpasswd -a sambauser
+smbpasswd -e sambauser
+
+testparm
+systemctl restart nmbd
+
+ufw allow from 192.168.205.0/24 to any app Samba
