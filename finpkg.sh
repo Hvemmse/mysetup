@@ -3,7 +3,7 @@
 
 ### 
 
-You can run this script with the name of the package as the argument in the check_package function. It will first run the getupdate command to update the package list, and then check if the package is installed. If it is not installed, it will install the package using apt-get. Finally, it will output a success message to the user.
+# You can run this script with the name of the package as the argument in the check_package function. It will first run the getupdate command to update the package list, and then check if the package is installed. If it is not installed, it will install the package using apt-get. Finally, it will output a success message to the user.
 
 ###
 
