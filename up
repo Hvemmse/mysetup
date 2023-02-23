@@ -1,0 +1,34 @@
+#!/bin/bash
+
+: <<'END_COMMENT'
+This command will first update the package list from the repositories,
+then upgrade any installed packages to their latest versions, remove
+any unnecessary packages, and finally refresh any Snap, Flatpak, or
+AppImage packages that are installed on your system.
+END_COMMENT
+
+# Update package list, upgrade packages, and remove unnecessary packages
+sudo apt-get -q update && \
+sudo apt-get -q dist-upgrade -y && \
+sudo apt-get -q autoremove -y && \
+
+# Update Snap packages, if installed
+if which snap >/dev/null; then
+  sudo snap refresh
+  echo "Snap packages updated successfully"
+fi
+
+# Update Flatpak packages, if installed
+if which flatpak >/dev/null; then
+  flatpak update
+  echo "Flatpak packages updated successfully"
+fi
+
+# Update AppImage packages, if installed
+if which appimagelauncher >/dev/null; then
+  appimagelauncher --update
+  echo "AppImage packages updated successfully"
+fi
+
+# Send success message to system log with timestamp
+logger -t "PackageUpdate" "Package update successful at $(date +"%Y-%m-%d %H:%M:%S")"
