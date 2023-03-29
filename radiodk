@@ -1,8 +1,6 @@
 #!/bin/bash
 # Coded 20/02/2022 Contact frank@simens.dk
-
-#!/bin/bash
-
+# add more stations in 032023
 if [[ ! -f "/usr/bin/mpv" ]]
 then
 
@@ -10,32 +8,40 @@ echo
 echo "Mpv ikke fundet , installerer. Run ./radio again"
 
 sudo pacman -S mpv
-./radiodk
+./radio
 
 else
 clear
 PS3='Vælg den station du vil høre: '
-options=("NDR 2" "P4 Øst" "Radio Soft" "GoFM" "Exit")
+options=("NDR 2" "P4 Øst" "Radio Soft" "GoFM" "Eins Live" "Radio 100" "advanced" "Exit")
 select opt in "${options[@]}"
 do
     case $opt in
         "NDR 2")
             echo "NDR2"
-	    mpv https://www.ndr.de/resources/metadaten/audio/m3u/ndr2_sh.m3u
+      mpv https://www.ndr.de/resources/metadaten/audio/m3u/ndr2_sh.m3u
 
             ;;
         "P4 Øst")
             echo "P4 Østjylland"
             mpv http://live-icy.gss.dr.dk:8000/A/A14L.mp3
-	    ;;
+      ;;
         "Radio Soft")
             echo "Radio Soft"
-	    mpv http://onair.100fmlive.dk/soft_live.mp3
+      mpv http://onair.100fmlive.dk/soft_live.mp3
             ;;
-	"GoFM")
-	    echo "GoFM"
-	    mpv http://stream1.webfm.dk/Webfm
-	    ;;
+        "GoFM")
+      echo "GoFM"
+      mpv http://stream1.webfm.dk/Webfm
+      ;;
+        "Eins Live")
+      echo "Eins Live"
+      mpv http://www.wdr.de/wdrlive/media/einslive.m3u
+      ;;
+	"Radio 100")
+	echo "Radio 100"	
+	mpv https://live-bauerdk.sharp-stream.com/radio100_dk_mp3
+      ;;
         "Exit")
             break
             ;;
