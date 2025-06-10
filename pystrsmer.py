@@ -18,7 +18,7 @@ import select
 stations = {
     "NDR 2": "https://www.ndr.de/resources/metadaten/audio/m3u/ndr2_sh.m3u",
     "P4 Østjylland": "http://live-icy.gss.dr.dk:8000/A/A14L.mp3",
-    "Radio Soft": "http://onair.100fmlive.dk/soft_live.mp3",
+    "Radio Soft": "https://live-bauerdk.sharp-stream.com/radiosoft_dk_mp3",
     "GoFM": "http://stream1.webfm.dk/Webfm",
     "Eins Live": "http://www.wdr.de/wdrlive/media/einslive.m3u",
     "Radio 100": "https://live-bauerdk.sharp-stream.com/radio100_dk_mp3",
