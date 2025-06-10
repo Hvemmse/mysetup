@@ -1,21 +1,108 @@
 #!/bin/bash
 
-# coded by Frank Simens at 2023 contact frank@simens.dk
-# easyaur is a script to use bash to get git clone from the aur from archlinux. easy way to use. copy the file to you /bin folder and you can used it one the hole system.
-# Works on Arch BTW
+# Coded by Frank Simens at 2023 contact frank@simens.dk
+# easyaur is a script to use bash to get git clone from the aur from archlinux.
+# It provides an easy way to use it. Copy the file to your /usr/local/bin folder and you can use it on the whole system.
+# Works on Arch BTW.
+
+# Function to display usage information
+usage() {
+    echo "Anvendelse: $(basename "$0") <pakkenavn>"
+    echo "Eksempel: $(basename "$0") brave-browser"
+    echo ""
+    echo "Dette script kloner og installerer en pakke fra Arch Linux AUR."
+    echo "Krævede værktøjer: 'git' og 'makepkg' (som er en del af 'base-devel' pakken)."
+    echo "Installer dem med: sudo pacman -S git base-devel"
+    exit 1
+}
+
+# Function to check for required commands
+check_dependencies() {
+    local missing_deps=()
+
+    # Check for git
+    if ! command -v git &> /dev/null; then
+        missing_deps+=("git")
+    fi
+
+    # Check for makepkg (part of base-devel)
+    if ! command -v makepkg &> /dev/null; then
+        missing_deps+=("makepkg (del af base-devel)")
+    fi
+
+    if [ ${#missing_deps[@]} -gt 0 ]; then
+        echo "Fejl: Følgende krævede værktøjer er ikke fundet:" >&2
+        for dep in "${missing_deps[@]}"; do
+            echo " - ${dep}" >&2
+        done
+        echo "" >&2
+        echo "Installer dem venligst med: sudo pacman -S git base-devel" >&2
+        exit 1
+    fi
+}
+
+# --- Main script execution starts here ---
+
+# Check if required dependencies are installed
+check_dependencies
+
+# Check if a package name was provided
+if [ -z "$1" ]; then
+    usage
+fi
 
 pkgname=$1
-url="https://aur.archlinux.org/${pkgname}.git"
+aur_url="https://aur.archlinux.org/${pkgname}.git"
 
-# Get the filename for the path after download
-radir=$pkgname
+echo "Forsøger at installere pakken: ${pkgname}"
 
-# Clone the link with git klone
-git clone --quiet $url
+# Create a temporary directory for the AUR package
+# This ensures that your current directory does not get cluttered.
+temp_dir=$(mktemp -d -t easyaur-XXXXXX)
 
-# Change directory to the package name as directory
-cd $radir 
+# Check if the temporary directory was created successfully
+if [ ! -d "$temp_dir" ]; then
+    echo "Fejl: Kunne ikke oprette midlertidig mappe." >&2
+    exit 1
+fi
 
-# install the package. you need need the base-devel and linux-headers installed 
-# example sudo pacman -Sy base-devel Linux-headers 
-makepkg -si --noconfirm
+echo "Kloner ${pkgname} ind i den midlertidige mappe: ${temp_dir}"
+
+# Clone the AUR package repository into the temporary directory
+# We are not using --quiet anymore to provide more user feedback.
+if ! git clone "$aur_url" "$temp_dir/$pkgname"; then
+    echo "Fejl: Kunne ikke klone ${pkgname} fra AUR. Tjek pakkenavnet og din internetforbindelse." >&2
+    # Remove the temporary directory on failure
+    rm -rf "$temp_dir"
+    exit 1
+fi
+
+# Change directory to the cloned package directory
+# We ensure the directory exists before changing into it.
+if ! cd "$temp_dir/$pkgname"; then
+    echo "Fejl: Kunne ikke skifte til pakkemappen: ${temp_dir}/${pkgname}." >&2
+    # Remove the temporary directory on failure
+    rm -rf "$temp_dir"
+    exit 1
+fi
+
+echo "Skifter til pakkemappen: $(pwd)"
+echo "Starter installationen af ${pkgname} med makepkg..."
+
+# Install the package. You need base-devel and optionally linux-headers installed.
+# makepkg -si handles sudo internally for installation.
+if ! makepkg -si --noconfirm; then
+    echo "Fejl: makepkg fejlede under installationen af ${pkgname}." >&2
+    echo "Sørg for, at 'base-devel' er korrekt installeret." >&2
+    # Remove the temporary directory on failure
+    rm -rf "$temp_dir"
+    exit 1
+fi
+
+echo "${pkgname} er installeret med succes!"
+
+# Clean up the temporary directory after successful installation
+echo "Rydder op i midlertidige filer..."
+rm -rf "$temp_dir"
+
+exit 0
