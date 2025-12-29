@@ -424,3 +424,68 @@ MT6261MA baseband IC
 
 The MT6261MA is a GSM/GPRS baseband processor providing core communications functionality and peripheral interfaces such as UART and SIM. 
 Jotrin Electronics
+
+
+Her er en kort, skarp TL;DR, som opsummerer alt det vi nu ved – klar til README, GitHub eller deling:
+
+TL;DR – Hvad ved vi nu (MD302 / MediaTek MT62xx)
+
+Enheden (MD302) er fuldt funktionsdygtig hardwaremæssigt
+
+Den er baseret på en MediaTek MT62xx-serie baseband SoC
+
+ARM9/ARM11-klasse CPU + DSP
+
+Integreret 2G GSM/GPRS modem
+
+Proprietært MediaTek-OS baseret på Nucleus RTOS
+
+Bootloader og firmware virker korrekt
+
+MediaTek Bootloader V005 starter
+
+Firmware loader og kører stabilt
+
+UART-log bekræfter normal boot og drift
+
+SIM-detektion fungerer
+
+SIM CARD -------- OK
+
+SIM-holder, PIN og kontakt er i orden
+
+Problemet er udelukkende netværk
+
+GSM Signal -------- NG
+
+NO SERVICE
+
+Enheden er 2G GSM-only
+
+Moderne SIM-kort (data/LTE/VoLTE) har typisk ikke 2G aktiveret
+
+Der er ingen hardwarefejl
+
+Batteri (VBAT ~3.4–3.6 V) er OK
+
+GPS, G-sensor, SOS m.m. rapporteres NG kun fordi GSM mangler
+
+Konklusion
+
+Enheden kan kun fungere med et SIM med aktiv 2G GSM
+
+Alternativt kan den bruges som:
+
+UART / embedded learning device
+
+Reverse-engineering-case
+
+Legacy GSM/GPS-studie
+
+Projektets værdi
+
+Bekræfter klassisk MT62xx-arkitektur
+
+Dokumenterer MediaTek boot-flow
+
+Relevans for embedded / legacy-analyse i 2025
