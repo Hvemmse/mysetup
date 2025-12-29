@@ -489,3 +489,111 @@ Bekræfter klassisk MT62xx-arkitektur
 Dokumenterer MediaTek boot-flow
 
 Relevans for embedded / legacy-analyse i 2025
+
+Perfekt fund. Det her er præcis den manglende “rygende pistol”, som binder dit MD302-arbejde sammen med konkret, offentlig reverse-engineering af MT62xx-baserede implants.
+
+Her er en stram TL;DR, som du kan bruge direkte i dit repo (fx RELATED_RESEARCH.md eller som reference-afsnit).
+
+TL;DR – S8 Data Line Locator (MT6261) & relevans for MT62xx / MD302
+
+S8 Data Line Locator er et lavpris GSM-spion-/tracking-implant skjult i et USB-kabel
+
+Baseret på MediaTek MT6261(MA) – samme MT62xx-familie som MD302-trackere
+
+Kører MediaTek proprietært OS baseret på Nucleus RTOS
+
+Bruger 2G GSM (850/900/1800/1900 MHz) – ingen GPS, kun celle-lokation
+
+Bekræftede tekniske facts
+
+MTK Bootloader V005 (samme banner som i dit MD302-projekt)
+
+UART giver boot-log, men ingen interaktiv shell
+
+USB D+/D- går direkte til MTK-SoC (Preloader / Download Mode)
+
+Enheden identificerer sig som:
+
+ID 0e8d:0003 MediaTek Inc. MT6227 phone
+
+
+➡️ MTK Preloader-adgang = muligt firmware-dump
+
+Firmware & flash-analyse
+
+ROM og SPI-flash kan dumpes
+
+Flash indeholder:
+
+Nucleus RTOS-strenge
+
+MediaTek HAL / bootloader-kilde-paths
+
+Konfigurationsdata (IMSI, controlling phone number)
+
+Hardcoded references til gpsui.net
+
+Flash er blok-beskyttet → skrivning svær / ikke løst
+
+Netværk & overvågning
+
+Enheden:
+
+sender data via GPRS uden tydelig brugeroplysning
+
+benytter gpsui.net som backend
+
+gpsui.net:
+
+gemmer lokationshistorik
+
+tillader remote commands
+
+havde dokumenterede IDOR-sårbarheder
+
+Brugeren informeres ikke om login-credentials eller datalagring
+
+➡️ Massiv privacy- og sikkerhedsrisiko
+
+Skjulte SMS-kommandoer (uddrag)
+
+Fundet direkte i flash:
+
+dw / loc – lokation
+
+1111 / 0000 – lydaktiveret callback
+
+server – server adresse (delvist)
+
+aqb – udleverer web-login credentials
+
+*3646655* – version query
+
+*reboot* – reboot
+
+➡️ Firmware deles på tværs af flere tracker-produkter (features der ikke findes på hardware)
+
+Relevans for dit MD302-projekt
+
+Dette arbejde bekræfter uafhængigt:
+
+MT62xx-baserede trackere:
+
+har samme bootloader
+
+samme OS-stack (Nucleus + MTK HAL)
+
+samme netværksarkitektur
+
+“Phone-home” adfærd er design-mæssig, ikke tilfældig
+
+2G-afhængighed forklarer NO SERVICE i moderne net
+
+➡️ Dit MD302-fund er teknisk konsistent med kendte MT62xx implants
+
+Overordnet konklusion
+
+MT62xx-baserede low-cost trackere er funktionelt robuste,
+men designet med skjult remote control, central logging og svag sikkerhed.
+De er uegnede til brug i 2025 uden fuld kontrol over firmware og netværk.
+
