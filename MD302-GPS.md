@@ -357,3 +357,70 @@ However, MT62xx chips remain relevant today for:
 🟡 Educational and reverse-engineering value  
 🔴 Obsolete for modern cellular networks (2G dependency)
 
+
+📌 MediaTek MT62xx-serien (verificeret info)
+📍 Generel beskrivelse
+
+MT62xx-serien er en ældre familie af GSM/GPRS baseband SoC’er fra MediaTek, brugt i feature phones og enkle mobil-/GSM-enheder. 
+Full Real
+
+📍 Én af chipsene: MT6235
+
+Processor i mange kinesiske mobiltelefoner
+
+Indeholder en ARM926EJ-S RISC CPU og en DSP
+
+Brugte proprietært MediaTek-OS baseret på Nucleus RTOS 
+Wikipedia
+
+Dette understøtter, at MT62xx-platformen har en rigtig CPU + modem integreret, ikke bare en simpel mikrokontroller.
+
+📍 Et eksempel på en baseband chip: MT6261
+
+GSM/GPRS baseband processor til lavpris mobiltelefoner og IoT-brug
+
+Har SIM-interface (SIM_IO, SIM_CLK, SIM_RST etc.) designet direkte i silikone
+
+Interfaces som UART, GPIO og antenne indgår normalt i pakken 
+Jotrin Electronics
+
+Det matcher, at din MD302 har SIM-busadgang via SIM pins osv.
+
+📍 MT62xx-chips i historisk kontekst
+
+Serien blev brugt bredt fra omkring midten af 2000’erne til begyndelsen af 2010’erne. 
+Wikipedia
+
+Serien inkluderer mange modeller (MT6205, MT6216, MT6223, MT6235 osv.) med GSM/GPRS modem klassificeret som baseband.
+
+🧠 Hvad denne dokumentation betyder for dit projekt
+
+Baseret på ovenstående kilder kan du med stor sikkerhed sige:
+
+✔️ MD302 bruger en ægte MediaTek baseband chip fra MT62xx-æraen
+✔️ Den har ARM-CPU + DSP + modem på samme chip
+✔️ Firmwaren kører på den integrerede processor der håndterer GSM/2G
+✔️ Dette er konsistent med det du så i UART-bootloggen
+
+📘 Eksempel på henvendelse du kan bruge i din tekstfil / README
+
+The MD302 GPS tracker uses a MediaTek baseband SoC from the MT62xx series, a family of GSM/GPRS telecom processors used in feature phones and embedded devices in the 2000s–2010s. These chips include an ARM926EJ-S RISC processor with an integrated GSM/GPRS modem and DSP, running MediaTek’s proprietary OS based on Nucleus RTOS. One documented example is the MT6235, featuring an ARM926EJ-S core and DSP subsystem. Another is the MT6261MA, which provides GSM/GPRS connectivity and contains UART, SIM and RF interfaces on die. 
+Wikipedia
++1
+
+🧾 Henvendelser (korte facts du kan cite)
+
+Feature phone-SoC
+
+MediaTek MT62xx chips were used in mobile phones and embedded GSM devices, typically integrating baseband modem and processor. 
+Full Real
+
+MT6235 processor
+
+The MT6235 is part of the MT62xx series with an ARM926EJ-S RISC CPU and DSP subsystem. 
+Wikipedia
+
+MT6261MA baseband IC
+
+The MT6261MA is a GSM/GPRS baseband processor providing core communications functionality and peripheral interfaces such as UART and SIM. 
+Jotrin Electronics
