@@ -202,3 +202,158 @@ MT62xx-serien repræsenterer i dag:
   - reverse engineering
   - embedded learning
   - analyse af legacy 2G-enheder
+ 
+    ## MediaTek (MTK) MT62xx Series – Resolved Technical Overview
+
+### Summary
+The **MediaTek MT62xx series** represents a family of controller and
+baseband System-on-a-Chip (SoC) solutions designed primarily for
+**feature phones** and low-cost GSM devices.
+
+These chips were widely used before the smartphone era and formed the
+technical foundation for many affordable mobile phones, GPS trackers,
+and embedded GSM products.
+
+---
+
+## MediaTek CPU Families (Mobile Overview)
+
+MediaTek mobile SoCs historically fall into three major families:
+
+1. **MT62xx series** – Feature phones and embedded GSM devices  
+2. **MT65xx series** – Smartphones (Android era)  
+3. **MT83xx series** – Tablets and flat-panel devices  
+
+This document focuses on the **MT62xx series**.
+
+---
+
+## MT62xx Series – Key Characteristics
+
+### Purpose
+- Designed for **GSM / GPRS / EDGE (2G)** communication
+- Integrated **baseband processor**
+- Optimized for:
+  - low cost
+  - low power consumption
+  - high functional integration
+- Widely adopted in China and emerging markets
+
+---
+
+### Architecture
+Depending on model, MT62xx chips use:
+
+- **ARM7**, **ARM9**, or **ARM11** CPU cores
+- Instruction sets:
+  - ARMv5T
+  - ARMv6L
+- Dedicated **DSP** for signal processing
+- Integrated peripherals (audio, display, camera, SIM, GPIO)
+
+---
+
+### Operating System
+- Runs MediaTek’s **proprietary OS**
+- Based on **Nucleus RTOS**
+- Closed platform (no official Linux or Android support)
+
+---
+
+## Design Philosophy (Important Insight)
+
+MTK did **not** pursue raw CPU performance as the main goal.
+
+Instead, MT62xx chips focused on:
+- **feature completeness**
+- **power efficiency**
+- **low BOM cost**
+- **long standby time**
+
+This meant that even low-end chips could deliver:
+- advanced UI effects
+- multimedia features
+- long battery life
+- extensive phone functionality
+
+---
+
+## Examples by Architecture
+
+### ARM7 (e.g. MT6250)
+- Clock ~260 MHz
+- Extremely low power consumption
+- Very low RF radiation
+- Capable of running Nucleus-based “smart-like” UI
+- Representative devices:
+  - Lenovo MA309
+
+---
+
+### ARM9 (e.g. MT6268)
+- Improved data throughput
+- Could handle:
+  - higher GSM data rates
+  - Wi-Fi (external)
+  - early 3G data handling (via modem integration)
+- Representative devices:
+  - Lenovo I62
+  - Lenovo P717
+  - Lenovo P650WG
+
+---
+
+### ARM11 (e.g. MT6276)
+- Highest-end MT62xx class
+- Near-smartphone experience
+- Advanced UI and software extensions
+- Full 3D graphical interfaces
+- Representative concept devices:
+  - Lenovo ZK990
+
+---
+
+## Power Efficiency as a Competitive Advantage
+
+One of MTK’s strongest advantages was **power management**.
+
+In many cases:
+- MTK designs consumed **significantly less power**
+- Standby time was often superior to competing Qualcomm solutions
+
+This design philosophy later influenced MTK’s Android-era chips, where:
+- ultra-long standby
+- USB-OTG
+- extended peripherals
+became selling points.
+
+---
+
+## Historical Importance
+
+The MT62xx series demonstrates that:
+- feature phones were not “weak”
+- careful system integration can outperform brute-force hardware
+- long battery life and usability often matter more than peak performance
+
+---
+
+## Modern Context
+MediaTek has since moved on to modern platforms such as:
+- **Helio**
+- **Dimensity**
+
+However, MT62xx chips remain relevant today for:
+- reverse engineering
+- embedded systems learning
+- legacy GSM device analysis
+- understanding early mobile SoC design
+
+---
+
+## Status
+🟢 Legacy platform  
+🟢 Technically robust for its time  
+🟡 Educational and reverse-engineering value  
+🔴 Obsolete for modern cellular networks (2G dependency)
+
