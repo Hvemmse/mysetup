@@ -130,3 +130,75 @@ Dette repo er ment som dokumentation og vidensdeling.
 Ingen kommerciel brug.
 ```
 
+## MediaTek MT62xx-serien – Teknisk overblik
+
+**MediaTek MT62xx-serien** er en familie af ældre **System-on-a-Chip (SoC)**- og
+controller-chips, primært designet til **feature phones** og trådløse
+kommunikationsenheder fra midten af 2000’erne og frem.
+
+Serien var udbredt i billige mobiltelefoner, GPS-trackere og andre
+embedded GSM-enheder – især i det asiatiske marked.
+
+---
+
+### Nøgleinformation om MT62xx-serien
+
+**Formål**
+- MT62xx-chips fungerer som **baseband-processorer**
+- Håndterer **GSM / GPRS / EDGE (2G)** kommunikation
+- Integrerer CPU, DSP, hukommelsesinterfaces og periferi på én chip
+- Muliggjorde produktion af meget **lavpris-mobiltelefoner**
+
+---
+
+**Arkitektur**
+- Typisk:
+  - **ARM926EJ-S** RISC-processor (ARM9)
+  - Dedikeret **DSP** til signalbehandling
+- Designet til lavt strømforbrug og simpel hardwareintegration
+
+---
+
+**Operativsystem**
+- Kører MediaTeks **proprietære OS**
+- Baseret på **Nucleus RTOS**
+- Lukket platform (ingen officiel Linux/Android-support)
+
+---
+
+**Funktioner**
+Afhængigt af model kunne chips understøtte:
+- GSM tale og SMS
+- GPRS/EDGE data
+- Kamera, lyd og simpel grafik
+- GPS (via eksternt modul)
+- Nogle modeller (fx **MT6235**) understøttede:
+  - multimedieafspilning
+  - analog TV-modtagelse/optagelse  
+  (sjældent uden for det asiatiske marked)
+
+---
+
+**Eksempler på modeller**
+- MT6229  
+- MT6230  
+- MT6235  
+
+Disse chips blev brugt i:
+- feature phones
+- GPS-trackere
+- billige IoT-/telemetri-enheder
+- embedded GSM-produkter
+
+---
+
+### Nutidig kontekst
+MediaTek har siden bevæget sig videre til mere avancerede platforme som
+**Helio** og **Dimensity**, der anvendes i moderne smartphones og tablets.
+
+MT62xx-serien repræsenterer i dag:
+- en **ældre generation af mobilteknologi**
+- men er stadig relevant for:
+  - reverse engineering
+  - embedded learning
+  - analyse af legacy 2G-enheder
